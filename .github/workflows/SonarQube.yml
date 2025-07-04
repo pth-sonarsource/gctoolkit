@@ -36,7 +36,9 @@ jobs:
       - name: Build and analyze
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=the-dna-squad_gctoolkit
+        run: |
+          mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=the-dna-squad_gctoolkit
+          ls -lR /home/runner/work/gctoolkit/gctoolkit/target/sonar/architecture/exports/
       - name: Store dna xml & json files
         uses: actions/upload-artifact@v4
         with:
